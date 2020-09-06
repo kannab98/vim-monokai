@@ -4,6 +4,7 @@
 " License:    MIT
 "
 " The colour palette is from http://www.colourlovers.com/
+" The original code is from https://github.com/w0ng/vim-hybrid
 
 " Initialisation
 " --------------
@@ -92,8 +93,7 @@ let s:darkred     = { "gui": "#5f0000", "cterm": "52" }
 
 let s:addfg       = { "gui": "#d7ffaf", "cterm": "193" }
 let s:addbg       = { "gui": "#5f875f", "cterm": "65" }
-let s:delfg       = { "gui": "#ff8b8b", "cterm": "210" }
-let s:delbg       = { "gui": "#f75f5f", "cterm": "124" }
+let s:delbg       = { "gui": "#f75f5f", "cterm": "167" }
 let s:changefg    = { "gui": "#d7d7ff", "cterm": "189" }
 let s:changebg    = { "gui": "#5f5f87", "cterm": "60" }
 
@@ -104,19 +104,24 @@ let s:br_blue     = { "gui": "#7AA6DA" }
 let s:br_purple   = { "gui": "#B77EE0" }
 let s:br_cyan     = { "gui": "#54CED6" }
 let s:br_white    = { "gui": "#FFFFFF" }
+let s:none        = { "gui": "NONE", "cterm": "NONE"}
 
 " Highlighting 
 " ------------
 
 " editor
-call s:h("Normal",        { "fg": s:white,      "bg": s:black })
-call s:h("ColorColumn",   {                     "bg": s:lightblack })
+"call s:h("Normal",        { "fg": s:white,      "bg": s:black })
+call s:h("Normal",        { "fg": s:white,      "bg": s:none})
+"call s:h("ColorColumn",   {                     "bg": s:lightblack })
+call s:h("ColorColumn",   {                     "bg": s:lightgrey})
 call s:h("Cursor",        { "fg": s:black,      "bg": s:white })
 call s:h("CursorColumn",  {                     "bg": s:lightblack2 })
 call s:h("CursorLine",    {                     "bg": s:lightblack2 })
 call s:h("NonText",       { "fg": s:lightgrey })
-call s:h("StatusLine",    { "fg": s:warmgrey,   "bg": s:black,        "format": "reverse" })
-call s:h("StatusLineNC",  { "fg": s:darkgrey,   "bg": s:warmgrey,     "format": "reverse" })
+call s:h("StatusLine",    { "fg": s:grey,       "bg": s:none })
+call s:h("StatusLineNC",  { "fg": s:grey,       "bg": s:none })
+"call s:h("StatusLine",    { "fg": s:warmgrey,   "bg": s:black,        "format": "reverse" })
+"call s:h("StatusLineNC",  { "fg": s:darkgrey,   "bg": s:warmgrey,     "format": "reverse" })
 call s:h("TabLine",       { "fg": s:white,      "bg": s:darkblack,    "format": "reverse" })
 call s:h("Visual",        {                     "bg": s:lightgrey })
 call s:h("Search",        { "fg": s:black,      "bg": s:yellow })
@@ -124,12 +129,15 @@ call s:h("MatchParen",    { "fg": s:purple,                           "format": 
 call s:h("Question",      { "fg": s:yellow })
 call s:h("ModeMsg",       { "fg": s:yellow })
 call s:h("MoreMsg",       { "fg": s:yellow })
-call s:h("ErrorMsg",      { "fg": s:black,      "bg": s:red,          "format": "standout" })
+"call s:h("ErrorMsg",      { "fg": s:black,      "bg": s:red,          "format": "standout" })
+call s:h("ErrorMsg",      { "fg": s:none,      "bg": s:red,  })
 call s:h("WarningMsg",    { "fg": s:red })
-call s:h("VertSplit",     { "fg": s:darkgrey,   "bg": s:darkblack })
-call s:h("LineNr",        { "fg": s:grey,       "bg": s:lightblack })
+call s:h("VertSplit",     { "fg": s:darkgrey,   "bg": s:none})
+"call s:h("LineNr",        { "fg": s:grey,       "bg": s:lightblack })
+call s:h("LineNr",        { "fg": s:grey,       "bg": s:none})
 call s:h("CursorLineNr",  { "fg": s:orange,     "bg": s:lightblack })
-call s:h("SignColumn",    {                     "bg": s:lightblack })
+"call s:h("SignColumn",    {                     "bg": s:lightblack })
+call s:h("SignColumn",    {                     "bg": s:none})
 
 " spell
 call s:h("SpellBad",      { "fg": s:red,                              "format": "underline" })
@@ -144,13 +152,14 @@ call s:h("Directory",     { "fg": s:aqua })
 
 " diff
 call s:h("DiffAdd",       { "fg": s:addfg,      "bg": s:addbg })
-call s:h("DiffDelete",    { "fg": s:delfg,      "bg": s:delbg })
+call s:h("DiffDelete",    { "fg": s:black,      "bg": s:delbg })
 call s:h("DiffChange",    { "fg": s:changefg,   "bg": s:changebg })
 call s:h("DiffText",      { "fg": s:black,      "bg": s:aqua })
 
 " fold
 call s:h("Folded",        { "fg": s:warmgrey,   "bg": s:darkblack })
 call s:h("FoldColumn",    {                     "bg": s:darkblack })
+
 "        Incsearch"
 
 " popup menu
@@ -252,11 +261,8 @@ call s:h("jpropertiesIdentifier",   { "fg": s:pink })
 call s:h("vimCommand",              { "fg": s:pink })
 
 " Javascript
-call s:h("jsClassKeyword",      { "fg": s:aqua, "format": "italic" })
-call s:h("jsGlobalObjects",     { "fg": s:aqua, "format": "italic" })
 call s:h("jsFuncName",          { "fg": s:green })
-call s:h("jsThis",              { "fg": s:orange, "format": "italic" })
-call s:h("jsObjectKey",         { "fg": s:white })
+call s:h("jsThis",              { "fg": s:pink })
 call s:h("jsFunctionKey",       { "fg": s:green })
 call s:h("jsPrototype",         { "fg": s:aqua })
 call s:h("jsExceptions",        { "fg": s:aqua })
@@ -264,82 +270,41 @@ call s:h("jsFutureKeys",        { "fg": s:aqua })
 call s:h("jsBuiltins",          { "fg": s:aqua })
 call s:h("jsArgsObj",           { "fg": s:aqua })
 call s:h("jsStatic",            { "fg": s:aqua })
-call s:h("jsSuper",             { "fg": s:orange, "format": "italic" })
+call s:h("jsSuper",             { "fg": s:aqua })
 call s:h("jsFuncArgRest",       { "fg": s:purple, "format": "italic" })                                 
 call s:h("jsFuncArgs",          { "fg": s:orange, "format": "italic" })
-call s:h("jsStorageClass",      { "fg": s:aqua, "format": "italic" })
+call s:h("jsStorageClass",      { "fg": s:aqua })
 call s:h("jsDocTags",           { "fg": s:aqua,   "format": "italic" })
-call s:h("jsFunction",          { "fg": s:aqua,   "format": "italic" })
 
 " Typescript
-call s:h("typescriptBraces",              { "fg": s:white })
-call s:h("typescriptParens",              { "fg": s:white })
-call s:h("typescriptOperator",            { "fg": s:pink })
-call s:h("typescriptEndColons",           { "fg": s:white })
+call s:h("typescriptArrowFuncArg",        { "fg": s:orange, "format": "italic" })
+call s:h("typescriptFuncType",            { "fg": s:orange, "format": "italic" })
+call s:h("typescriptCall",                { "fg": s:orange, "format": "italic" })
+call s:h("typescriptVariable",            { "fg": s:aqua })
 call s:h("typescriptModule",              { "fg": s:aqua })
 call s:h("typescriptPredefinedType",      { "fg": s:aqua })
+call s:h("typescriptFuncTypeArrow",       { "fg": s:aqua })
 call s:h("typescriptImport",              { "fg": s:pink })
 call s:h("typescriptExport",              { "fg": s:pink })
-call s:h("typescriptIdentifier",          { "fg": s:orange, "format": "italic" })
-call s:h("typescriptVariable",            { "fg": s:aqua })
 call s:h("typescriptCastKeyword",         { "fg": s:pink })
+call s:h("typescriptOperator",            { "fg": s:pink })
+call s:h("typescriptEndColons",           { "fg": s:white })
+call s:h("typescriptObjectLabel",         { "fg": s:green })
 call s:h("typescriptAmbientDeclaration",  { "fg": s:pink })
 call s:h("typescriptTestGlobal",          { "fg": s:pink })
-call s:h("typescriptFuncKeyword",         { "fg": s:aqua })
-call s:h("typescriptFuncTypeArrow",       { "fg": s:aqua })
-call s:h("typescriptFuncType",            { "fg": s:orange, "format": "italic" })
-call s:h("typescriptFuncName",            { "fg": s:green })
-call s:h("typescriptArrowFuncArg",        { "fg": s:orange, "format": "italic" })
-call s:h("typescriptCall",                { "fg": s:orange, "format": "italic" })
-call s:h("typescriptClassKeyword",        { "fg": s:aqua,   "format": "italic" })
-call s:h("typescriptClassName",           { "fg": s:white })
-call s:h("typescriptClassHeritage",       { "fg": s:white })
-call s:h("typescriptInterfaceKeyword",    { "fg": s:aqua,   "format": "italic" })
-call s:h("typescriptInterfaceName",       { "fg": s:white })
-call s:h("typescriptObjectLabel",         { "fg": s:green })
-call s:h("typescriptMember",              { "fg": s:green })
-call s:h("typescriptTypeReference",       { "fg": s:purple, "format": "italic" })
-call s:h("typescriptTypeParameter",       { "fg": s:purple, "format": "italic" })
-call s:h("typescriptOptionalMark",        { "fg": s:pink })
-call s:h("tsxAttrib",                     { "fg": s:green })
-call s:h("tsxTagName",                    { "fg": s:pink })
-
-" Dart
-call s:h("dartStorageClass",    { "fg": s:pink })
-call s:h("dartExceptions",      { "fg": s:pink })
-call s:h("dartConditional",     { "fg": s:pink })
-call s:h("dartRepeat",          { "fg": s:pink })
-call s:h("dartTypedef",         { "fg": s:pink })
-call s:h("dartKeyword",         { "fg": s:pink })
-call s:h("dartConstant",        { "fg": s:purple })
-call s:h("dartBoolean",         { "fg": s:purple })
-call s:h("dartCoreType",        { "fg": s:aqua })
-call s:h("dartType",            { "fg": s:aqua })
                                  
-" HTML
+" Html
 call s:h("htmlTag",             { "fg": s:white })
 call s:h("htmlEndTag",          { "fg": s:white })
 call s:h("htmlTagName",         { "fg": s:pink })
 call s:h("htmlArg",             { "fg": s:green })
 call s:h("htmlSpecialChar",     { "fg": s:purple })
 
-" XML
+" Xml
 call s:h("xmlTag",              { "fg": s:pink })
 call s:h("xmlEndTag",           { "fg": s:pink })
 call s:h("xmlTagName",          { "fg": s:orange })
 call s:h("xmlAttrib",           { "fg": s:green })
-
-" JSX
-call s:h("jsxTag",              { "fg": s:white })
-call s:h("jsxCloseTag",         { "fg": s:white })
-call s:h("jsxCloseString",      { "fg": s:white })
-call s:h("jsxPunct",            { "fg": s:white })
-call s:h("jsxClosePunct",       { "fg": s:white })
-call s:h("jsxTagName",          { "fg": s:pink })
-call s:h("jsxComponentName",    { "fg": s:pink })
-call s:h("jsxAttrib",           { "fg": s:green })
-call s:h("jsxEqual",            { "fg": s:white })
-call s:h("jsxBraces",           { "fg": s:white })
 
 " CSS
 call s:h("cssProp",             { "fg": s:yellow })
@@ -389,23 +354,10 @@ call s:h("erubyRailsMethod",            { "fg": s:aqua })
 
 " c
 call s:h("cLabel",                      { "fg": s:pink })
-call s:h("cStructure",                  { "fg": s:aqua })
+call s:h("cStructure",                  { "fg": s:pink })
 call s:h("cStorageClass",               { "fg": s:pink })
-call s:h("cInclude",                    { "fg": s:pink })
-call s:h("cDefine",                     { "fg": s:pink })
-call s:h("cSpecial",                    { "fg": s:purple })
-
-" Markdown
-call s:h("markdownCode",       { "fg": s:purple, "format": "italic" } )
-call s:h("markdownListMarker", { "fg": s:purple                     } )
-
-" vim-notes
-call s:h("notesTitle",       { "fg": s:aqua,        "format": "bold"   } )
-call s:h("notesAtxMarker",   { "fg": s:pink                            } )
-call s:h("notesListBullet",  { "fg": s:purple                          } )
-call s:h("notesListNumber",  { "fg": s:purple,      "format": "italic" } )
-call s:h("notesBold",        { "format": "bold"                        } )
-call s:h("notesDoneMarker",  { "fg": s:green                           } )
+call s:h("cInclude",                    { "fg": s:green })
+call s:h("cDefine",                     { "fg": s:green })
 
 " Terminal Colors
 " ---------------

@@ -3,6 +3,8 @@ vim-monokai
 
 Refined monokai color scheme for vim. 
 
+* The colour palette from [sickill/vim-monokai](https://github.com/sickill/vim-monokai). 
+
 Install
 -------
 
@@ -44,7 +46,7 @@ set t_Co=256  " vim-monokai now only support 256 colours in terminal.
 ```
 
 coc.nvim support
-----------------
+--------------------
 
 [coc.nvim](https://github.com/neoclide/coc.nvim) is a powerful completion engine, it brings *vs-code*'s experience into vim. *vim-monokai* fits it well.
 
@@ -60,18 +62,22 @@ If you are using a font support italic, paste below command in `.vimrc` to turn 
     let g:monokai_term_italic = 1
     let g:monokai_gui_italic = 1
 
-Recommend syntax plugins
-------------------------
+Javascript
+----------
 
-Below plugins would give you better experience when using *vim-monokai*:
+For javascript development, it is recommend to install below plugins:
 
-| Language     | Plugins                                                                                                                               |
-| ------------ | --------------------------------------                                                                                                |
-| Javascript   | [vim-javascript](https://github.com/pangloss/vim-javascript)<br>[vim-javascript-lib](https://github.com/crusoexia/vim-javascript-lib) |
-| Typescript   | [yats.vim](https://github.com/HerringtonDarkholme/yats.vim)                                                                           |
-| Dart         | [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)                                                                       |
-| JSX          | [vim-jsx-pretty](https://github.com/MaxMEllon/vim-jsx-pretty)                                                                         |
-| Markdown     | [vim-markdown](https://github.com/tpope/vim-markdown)                                                                                 |
+1. [vim-javascript](https://github.com/pangloss/vim-javascript), which provide features such as param syntax highlight, 
+function assignment identifier highlight ( just as the screenshots ).
+
+2. [vim-javascript-lib](https://github.com/crusoexia/vim-javascript-lib), which is the companion of _vim-javascript_, 
+provide the popular javascript libraries key word highlight, such as [underscore](http://underscorejs.org/) and 
+[Backbone](http://backbonejs.org/).
+
+Typescript
+----------
+
+For better typescript highlight, it is recommend to install the [yats.vim](https://github.com/HerringtonDarkholme/yats.vim) syntax plugin.
 
 Screenshots
 -----------
